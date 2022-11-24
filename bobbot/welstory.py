@@ -10,6 +10,7 @@ load_dotenv(verbose=True)
 now = datetime.datetime.today()
 now_s = now.strftime("%Y%m%d")
 
+
 def welstory_parse():
     WELSTORY_ID = os.getenv('WELSTORY_ID')
     WELSTORY_PW = os.getenv('WELSTORY_PW')
