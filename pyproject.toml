@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "bobbot"
+version = "0.1.0"
+description = ""
+authors = ["Byeonghyun Kim <kimbh4932@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+playwright = "^1.28.0"
+pillow = "^9.3.0"
+bs4 = "^0.0.1"
+slack-sdk = "^3.19.4"
+python-dotenv = "^0.21.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
