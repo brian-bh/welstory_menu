@@ -1,20 +1,22 @@
 import json
 import os
 from playwright.sync_api import sync_playwright
+from src import config
 
 from bs4 import BeautifulSoup
-from dotenv import load_dotenv
 import datetime
 
-load_dotenv(verbose=True)
 now = datetime.datetime.today()
 now_s = now.strftime("%Y%m%d")
 
 
 def welstory_parse():
-    WELSTORY_ID = os.getenv('WELSTORY_ID')
-    WELSTORY_PW = os.getenv('WELSTORY_PW')
-    WELSTORY_RESTAURANT = os.getenv('WELSTORY_RESTAURANT_CODE')
+
+    # environments from config
+    WELSTORY_ID = config.WELSTORY_ID
+    WELSTORY_PW = config.WELSTORY_PW
+    WELSTORY_RESTAURANT = config.WELSTORY_RESTAURANT_CODE
+
     sql = 'fetch("https://welplus.welstory.com/login", {  "headers": {    "accept": "application/json, text/plain, ' \
           '*/*",    "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",    "content-type": ' \
           '"application/x-www-form-urlencoded;charset=UTF-8",' \
