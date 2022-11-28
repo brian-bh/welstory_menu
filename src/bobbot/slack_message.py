@@ -1,15 +1,16 @@
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 from pathlib import Path
-from dotenv import load_dotenv
 import os
 import welstory
 import menu_image
 
-load_dotenv(verbose=True)
-SLACK_APP_TOKEN = os.getenv("SLACK_APP_TOKEN")
-SLACK_CHANNEL_ID = os.getenv("SLACK_CHANNEL_ID")
+from src import config
+
+SLACK_APP_TOKEN = config.SLACK_APP_TOKEN
+SLACK_CHANNEL_ID = config.SLACK_CHANNEL_ID
 this = Path(__file__).parent.absolute()
+
 
 def postMessage(message):
     client = WebClient(token=SLACK_APP_TOKEN)
@@ -21,6 +22,7 @@ def postMessage(message):
         return response['ts']
     except SlackApiError as e:
         assert e.response["error"]
+
 
 def postMessageWithFiles(message, fileList, ts):
     client = WebClient(token=SLACK_APP_TOKEN)
@@ -35,6 +37,7 @@ def postMessageWithFiles(message, fileList, ts):
             thread_ts=ts)
     except SlackApiError as e:
         assert e.response["error"]
+
 
 def send_message_to_slack():
     msg = ""

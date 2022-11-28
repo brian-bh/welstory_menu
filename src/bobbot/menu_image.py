@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import platform
 import urllib.request as req
 
+
 def pillow_image(pic, name, where, submenu, kcal):
     if platform.system() == 'Darwin':  # when mac
         font = 'AppleGothic.ttf'
@@ -29,12 +30,13 @@ def pillow_image(pic, name, where, submenu, kcal):
         y += 25
     img.save(pic)
 
-def menu_image_download(dict: dict):
-    if 'photo' not in dict.keys() or dict['photo'] is None:
+
+def menu_image_download(dictionary: dict):
+    if 'photo' not in dictionary.keys() or dictionary['photo'] is None:
         return 'No photos in the dict'
-    elif 'name' not in dict.keys() or dict['name'] is None:
+    elif 'name' not in dictionary.keys() or dictionary['name'] is None:
         raise 'invalidName'
     else:
-        req.urlretrieve(dict['photo'], f"{dict['name']}.png")
-        pillow_image(f"{dict['name']}.png", dict['name'], dict['where'], dict['submenu'], dict['kcal'])
+        req.urlretrieve(dictionary['photo'], f"{dictionary['name']}.png")
+        pillow_image(f"{dictionary['name']}.png", dictionary['name'], dictionary['where'], dictionary['submenu'], dictionary['kcal'])
 
