@@ -1,6 +1,19 @@
 from PIL import Image, ImageDraw, ImageFont
 import platform
 import urllib.request as req
+from pathlib import Path
+
+source = Path('.','menu_images')
+
+
+def menu_image_download(dictionary: dict):
+    if 'photo' not in dictionary.keys() or dictionary['photo'] is None:
+        return 'No photos in the dict'
+    elif 'name' not in dictionary.keys() or dictionary['name'] is None:
+        raise 'invalidName'
+    else:
+        req.urlretrieve(dictionary['photo'], Path.joinpath(source, f"{dictionary['where']}.png"))
+        pillow_image(Path.joinpath(source, f"{dictionary['where']}.png"), dictionary['name'], dictionary['where'], dictionary['submenu'], dictionary['kcal'])
 
 
 def pillow_image(pic, name, where, submenu, kcal):
@@ -30,13 +43,4 @@ def pillow_image(pic, name, where, submenu, kcal):
         y += 25
     img.save(pic)
 
-
-def menu_image_download(dictionary: dict):
-    if 'photo' not in dictionary.keys() or dictionary['photo'] is None:
-        return 'No photos in the dict'
-    elif 'name' not in dictionary.keys() or dictionary['name'] is None:
-        raise 'invalidName'
-    else:
-        req.urlretrieve(dictionary['photo'], f"{dictionary['name']}.png")
-        pillow_image(f"{dictionary['name']}.png", dictionary['name'], dictionary['where'], dictionary['submenu'], dictionary['kcal'])
 

@@ -128,3 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .DS_Store
+
+# 이미지 파일 저장소
+menu_images/*
